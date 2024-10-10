@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire avec Date et Échéance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 50px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"], input[type="date"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            background-color: transparent;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus {
+            border-color: #80bdff;
+            outline: none;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #16830e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #245526;
+        }
+    </style>
+    <script>
+        // définir la date actuelle par défaut dans le champ "Date prévue"
+        window.onload = function() {
+            var today = new Date();
+            var day = ("0" + today.getDate()).slice(-2);
+            var month = ("0" + (today.getMonth() + 1)).slice(-2);
+            var todayDate = today.getFullYear() + "-" + month + "-" + day;
+            document.getElementById('date-prevue').value = todayDate;
+        }
+    </script>
+</head>
+<body>
+
+<div class="form-container">
+    <form method="POST" action="/submit">
+       
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+        </div>
+
+        
+        <div class="form-group">
+            <label for="date-prevue">Date prévue</label>
+            <input type="date" id="date-prevue" name="date-prevue" required>
+        </div>
+
+        
+        <div class="form-group">
+            <label for="echeance">Échéance (jours)</label>
+            <input type="number" id="echeance" name="echeance" min="1" max="365" required>
+        </div>
+
+        
+        <div class="form-group">
+            <label for="motif">Motif</label>
+            <input type="text" id="motif" name="motif" required>
+        </div>
+
+        <button type="submit">Soumettre</button>
+    </form>
+</div>
+
+</body>
+</html>
